@@ -1,40 +1,44 @@
-# Cache Simulator
+# Cache and Virtual Memory Simulator
 
-A Python command-line tool to simulate cache behavior with configurable parameters. Built for **CS 3853 – Team #01**.
+This project simulates a **cache memory** and **virtual memory system** based on instruction and data access trace files. The simulator models cache behavior (hits, misses, replacement policies) and virtual memory management (page mapping, page faults) to analyze performance metrics such as **CPI**, **hit/miss rates**, and **memory usage**.
 
 ---
 
-# Usage
+## 📁 Features
+
+### ✅ Cache Simulation:
+- Configurable cache size, block size, and associativity
+- Supports **Round-Robin (RR)** and **Random Replacement** policies
+- Tracks:
+  - Cache hits & misses
+  - Compulsory and conflict misses
+  - Cycles Per Instruction (CPI)
+  - Cache utilization and cost analysis
+
+### ✅ Virtual Memory Simulation:
+- Simulates a basic page table with:
+  - Physical page allocation
+  - Page hits, new mappings, and page faults
+- Supports multiple processes (via multiple trace files)
+- Tracks:
+  - Virtual-to-physical page mapping
+  - Free/used physical pages
+  - Per-process page table memory usage
+
+---
+
+## 📦 Requirements
+
+- Python 3.x
+- Works on macOS, Linux, and Windows
+
+No external libraries are required beyond Python's standard library.
+
+---
+
+## 🚀 Usage
+
+### 1. Run Cache Simulation:
 
 ```bash
-python3 cache_simulator.py -s 1024 -b 16 -a 2 -r rr -p 1024 -u 20 -n 100 -f trace1.txt trace2.txt
-```
-
-### Required Flags
-
-| Flag | Description |
-|------|-------------|
-| `-s` | Cache size in KB (8–16384) |
-| `-b` | Block size in bytes (8–64) |
-| `-a` | Associativity (1, 2, 4, 8, 16) |
-| `-r` | Replacement policy (`rr`, `rnd`) |
-| `-p` | Physical memory in MB (128–4096) |
-| `-u` | OS memory usage (%) |
-| `-n` | Instructions per slice (or `-1` for max) |
-| `-f` | 1–3 trace file names |
-
----
-
-# Output
-
-Displays input config and calculated metrics:
-
-- Cache blocks, tag/index size
-- Overhead and memory cost
-- Page table size and RAM usage
-
----
-
-# Author
-
-** Prince Patel ** – CS 3853, UTSA
+python3 simulator.py --cache --cache-size 32 --block-size 16 --associativity 2 --policy RR --traces trace1.txt trace2.txt
